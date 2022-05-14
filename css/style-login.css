@@ -97,8 +97,10 @@ body{
     padding-top: 10px;
     text-align: center;
     font-size: 1.6rem;
+    font-weight: bolder;
     
 }
+
 
 .right-side-menu{
     margin-top: 10vh;
@@ -110,6 +112,7 @@ body{
 .h2-right-side{
     color: #0071C5;
     font-size: 2.5rem;
+    font-weight: bolder;
 }
 form{
     width: 60%;
