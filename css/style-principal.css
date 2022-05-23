@@ -24,7 +24,7 @@ h1{
 }
 #cabecalho-container{
     width: 50%;
-    height: 35px;
+    height: 20%px;
 }
 #cabecalho-row{
     color: #fff;
@@ -39,4 +39,7 @@ a:hover{
    color: #f3f3f3;
    font-size: 1.3rem;
    transition: ease-in-out 0.3s;
+}
+.menu-button{
+    margin-left: 1200px;
 }
