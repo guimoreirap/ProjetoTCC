@@ -25,10 +25,12 @@ a:hover{
 .nav-link:hover{
     color: #fff;
 }
-#navbarNav{
-    display: flex;
-    justify-content: center;
+.btn-light{
+    color:  #0071C5;
+    font-weight: bold;
 }
-#nav-button{
-    margin-left: 800px;
+.btn-light:hover{
+    color: #fff;
+    background-color:  #0071C5;
 }
+
