@@ -1,0 +1,41 @@
+*{
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+body{
+    background-color: #f3f3f3;
+    width: 99%;
+    height: 80vh;
+}
+.nav-menu{
+    --bs-bg-opacity: 1;
+    background-color: #0071C5;
+    width: 101%;
+}
+a{
+    color: #fff;
+}
+a:hover{
+    color: #fff;
+    font-weight: bolder;
+}
+.nav-link{
+    color: #fff;
+}
+.nav-link:hover{
+    color: #fff;
+}
+.btn-light{
+    color:  #0071C5;
+    font-weight: bold;
+}
+.btn-light:hover{
+    color: #fff;
+    background-color:  #0071C5;
+}
+#card{
+    text-align: center;
+}
+tr:hover{
+    background-color: rgba(0, 113, 197, 30%);
+}
