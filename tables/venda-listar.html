@@ -269,10 +269,48 @@
 
             </tbody>
         </table>
-        <a class="navbar-brand" href="venda-cadastrar.html">
-            <button type="button" class="btn btn-primary">Cadastrar</button>
-          </a>    
-        </div>
+        
+            <!-- CHAMADA DO MODAL -->
+            <button type="button" name="alterar" value="itens-de-venda" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#staticBackdropCadastrar">
+                Cadastrar
+            </button>
+        
+
+        <!-- ESTRUTURA DO MODAL -->
+        <div class="modal fade" id="staticBackdropCadastrar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Itens de Venda</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-success table-striped">
+                        <tr>
+                            <div class="mb-3">
+                                <label for="exampleInputValorTotal" class="form-label">Produto</label>
+                                <input type="text" class="form-control" id="exampleInputValorTotal" aria-describedby="emailHelp">
+                            </div>
+                            
+                        </tr>
+                        <tr>
+                            <div class="mb-3">
+                                <label for="exampleInputValorTotal" class="form-label">Quantidade</label>
+                                <input type="text" class="form-control" id="exampleInputValorTotal" aria-describedby="emailHelp">
+                            </div>
+                        </tr>
+
+                    </table>
+                </div>
+
+                <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Salvar</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+
+                </div>
+            </div>
+            </div>
+        </div>        </div>
 
 
 </body>
