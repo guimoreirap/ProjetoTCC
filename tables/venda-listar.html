@@ -24,13 +24,10 @@
                   Cadastros
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="cidade-listar.html">Cidade</a></li>
                   <li><a class="dropdown-item" href="cliente-listar.html">Cliente</a></li>
                   <li><a class="dropdown-item" href="fornecedor-listar.html">Fornecedor</a></li>
-                  <li><a class="dropdown-item" href="funcionario-listar.html">Funcionário</a></li>
-                  <li><a class="dropdown-item" href="marca-listar.html">Marca</a></li>
                   <li><a class="dropdown-item" href="produto-listar.html">Produto</a></li>
-                  <li><a class="dropdown-item" href="tipoDeProduto-listar.html">Tipo de produto</a></li>
+                  <li><a class="dropdown-item" href="usuario-listar.html">Usuário</a></li>
                 </ul>
               </li>
               <li class="nav-item dropdown">
@@ -41,8 +38,8 @@
                     <li><a class="dropdown-item" href="compra-listar.html">Compra</a></li>
                     <li><a class="dropdown-item" href="venda-listar.html">Venda</a></li>
                     <li><a class="dropdown-item" href="caixa-listar.html">Caixa</a></li>
-                    <li><a class="dropdown-item" href="pagamento-listar.html">Pagamento</a></li>
-                    <li><a class="dropdown-item" href="recebimento-listar.html">Recebimento</a></li>
+                    <li><a class="dropdown-item" href="controle-pagamento-listar.html">Pagamento</a></li>
+                    <li><a class="dropdown-item" href="controle-recebimento-listar.html">Recebimento</a></li>
                 </ul>
               </li>
               <li class="nav-item dropdown">
@@ -79,7 +76,6 @@
                 <th scope="col">Data</th>
                 <th scope="col">Hora</th>
                 <th scope="col">Cliente</th>
-                <th scope="col">Funcionário</th>
                 <th scope="col">Valor total</th>
                 <th scope="col">Status de recebimento</th>
                 <th scope="col">Saldo a receber</th>
@@ -119,9 +115,9 @@
                                     <div class="modal-body">
                                         <table class="table table-success table-striped">
                                             <tr>
-                                                <th>Id</th>
+                                                <th>ID</th>
                                                 <th>Nome</th>
-                                                <th>Quantidade</th>
+                                                <th>Qtd</th>
                                                 <th>Valor unitário</th>
                                                 <th>Valor total</th>
                                                 
@@ -174,70 +170,6 @@
                 <tr>
                     <th scope="row">1</th>
                     <td>Mark</td>
-                    <td>Mark</td>
-                    <td>Mark</td>
-                    <td>@mdo</td>
-                    <td>@mdo</td>
-                    <td>@mdo</td>
-                    <td>@mdo</td>
-                    <td  class="">
-                        <form action="" >
-                            <div>
-                                <!-- CHAMADA DO MODAL -->
-                                <button type="button" name="alterar" value="itens-de-venda" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                                    <i class="fa-solid fa-cart-shopping"></i>
-                                </button>
-                            </div>
-
-                    </td>
-                            <td  class="d-flex">
-                                <form action="" >
-                                    <button type="" name="alterar" value="alterar" class="btn btn-warning btn-sm">
-                                            <i class="far fa-edit"></i>
-                                    </button>
-                                </form>
-                                    <button type="" name="excluir" value="excluir" class="btn btn-danger btn-sm">
-                                    <i class="far fa-trash-alt"></i>
-                                    </button>
-                        </form>
-                            </td>
-                </tr>
-
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Mark</td>
-                    <td>Mark</td>
-                    <td>@mdo</td>
-                    <td>@mdo</td>
-                    <td>@mdo</td>
-                    <td>@mdo</td>
-                    <td  class="">
-                        <form action="" >
-                            <div>
-                                <!-- CHAMADA DO MODAL -->
-                                <button type="button" name="alterar" value="itens-de-venda" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                                    <i class="fa-solid fa-cart-shopping"></i>
-                                </button>
-                            </div>
-
-                    </td>
-                    <td  class="d-flex">
-                        <form action="" >
-                            <button type="" name="alterar" value="alterar" class="btn btn-warning btn-sm">
-                                    <i class="far fa-edit"></i>
-                            </button>
-                        </form>
-                            <button type="" name="excluir" value="excluir" class="btn btn-danger btn-sm">
-                            <i class="far fa-trash-alt"></i>
-                            </button>
-                        </form>
-                    </td>
-                </tr>
-
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
                     <td>@mdo</td>
                     <td>Mark</td>
                     <td>Mark</td>
@@ -270,47 +202,12 @@
             </tbody>
         </table>
         
-        <!-- CHAMADA DO MODAL -->
-        <button type="button" name="alterar" value="itens-de-venda" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#staticBackdropCadastrar">
-            Cadastrar
-        </button>
+        <a class="navbar-brand" href="venda-cadastrar.html">
+            <button type="button" class="btn btn-primary">Cadastrar</button>
+        </a>
         
 
-        <!-- ESTRUTURA DO MODAL -->
-        <div class="modal fade" id="staticBackdropCadastrar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Itens de Venda</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <table class="table table-success table-striped">
-                        <tr>
-                            <div class="mb-3">
-                                <label for="exampleInputValorTotal" class="form-label">Produto</label>
-                                <input type="text" class="form-control" id="exampleInputValorTotal" aria-describedby="emailHelp">
-                            </div>
-                            
-                        </tr>
-                        <tr>
-                            <div class="mb-3">
-                                <label for="exampleInputValorTotal" class="form-label">Quantidade</label>
-                                <input type="text" class="form-control" id="exampleInputValorTotal" aria-describedby="emailHelp">
-                            </div>
-                        </tr>
-
-                    </table>
-                </div>
-
-                <div class="modal-footer">
-                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Salvar</button>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-
-                </div>
-            </div>
-            </div>
-        </div>        
+               
     </div>
 
 
