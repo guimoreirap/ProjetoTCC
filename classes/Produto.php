@@ -1,0 +1,54 @@
+<?php
+
+require_once 'Conexao.php';
+
+class Produto{
+    public $id;
+    public $nome;
+    public $descricao;
+    public $valordecusto;
+    public $valordevenda;
+    public $quantidade;
+
+    public function __construct($id = false){
+        if($id){
+            $this->id = $id;
+            $this->carregar();
+        }
+    }
+
+    public function inserir ()
+    {
+        $sql = "insert into produto(nome, descricao, valordecusto, valordevenda, quantidade) values (:nome, :descricao, :valordecusto, :valordevenda, :quantidade)";
+
+        $conexao = Conexao::getConexao();
+
+        $ps = $conexao->prepare($sql);
+        $ps->bindValue(':nome', $this->nome);
+        $ps->bindValue(':descricao', $this->descricao);
+        $ps->bindValue(':valordecusto', $this->valordecusto);
+        $ps->bindValue(':valordevenda', $this->valordevenda);
+        $ps->bindValue(':quantidade', $this->quantidade);
+
+        $resultado = $ps->execute();
+        if($resultado == 0){
+            throw new Exception("Erro ao inserir registro.");
+            return false;
+        }
+        return true;
+    }
+
+    public function carregar(){
+        $sql = "select * from produto where id = {$this->id}";
+        $conexao = Conexao::getConexao(); // Os dois pontos são utilizadas caso a função seja STATIC
+        $resultado = $conexao->query($sql);
+        $lista = $resultado->fetchAll();
+        foreach($lista as $linha){
+            $this->nome = $linha['nome']; 
+            $this->descricao = $linha['descricao']; 
+            $this->valordecusto = $linha['valordecusto'];
+            $this->valordevenda = $linha['valordevenda'];
+            $this->quantidade = $linha['quantidade'];
+        }
+    }
+}
