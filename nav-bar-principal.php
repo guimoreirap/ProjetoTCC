@@ -1,19 +1,4 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/6cd1e3e803.js" crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
-    <link rel="stylesheet" href="css/style-principal.css">
-
-    <title>Principal</title>
-</head>
-<body>
-
-  <nav class="navbar navbar-expand-lg nav-menu">
+<nav class="navbar navbar-expand-lg nav-menu">
     <div class="container-fluid">
       <a class="navbar-brand" href="principal.html">Principal</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,10 +11,10 @@
               Cadastros
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="tables/cliente-listar.html">Cliente</a></li>
-              <li><a class="dropdown-item" href="tables/fornecedor-listar.html">Fornecedor</a></li>
-              <li><a class="dropdown-item" href="tables/produto-listar.html">Produto</a></li>
-              <li><a class="dropdown-item" href="tables/usuario-listar.html">Usuário</a></li>
+              <li><a class="dropdown-item" href="tables/cliente-listar.php">Cliente</a></li>
+              <li><a class="dropdown-item" href="tables/fornecedor-listar.php">Fornecedor</a></li>
+              <li><a class="dropdown-item" href="tables/produto-listar.php">Produto</a></li>
+              <li><a class="dropdown-item" href="tables/usuario-listar.php">Usuário</a></li>
             </ul>
           </li>
           <li class="nav-item dropdown">
@@ -37,11 +22,11 @@
               Movimentações
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="tables/compra-listar.html">Compra</a></li>
-                <li><a class="dropdown-item" href="tables/venda-listar.html">Venda</a></li>
-                <li><a class="dropdown-item" href="tables/caixa-listar.html">Caixa</a></li>
-                <li><a class="dropdown-item" href="tables/controle-pagamento-listar.html">Pagamento</a></li>
-                <li><a class="dropdown-item" href="tables/controle-recebimento-listar.html">Recebimento</a></li>
+                <li><a class="dropdown-item" href="tables/compra-listar.php">Compra</a></li>
+                <li><a class="dropdown-item" href="tables/venda-listar.php">Venda</a></li>
+                <li><a class="dropdown-item" href="tables/caixa-listar.php">Caixa</a></li>
+                <li><a class="dropdown-item" href="tables/controle-pagamento-listar.php">Pagamento</a></li>
+                <li><a class="dropdown-item" href="tables/controle-recebimento-listar.php">Recebimento</a></li>
             </ul>
           </li>
           <li class="nav-item dropdown">
@@ -64,9 +49,3 @@
       </div>
     </div>
   </nav>
-
-</body>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
-</html>
