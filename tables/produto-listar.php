@@ -1,5 +1,6 @@
 <?php
     require_once '../classes/Produto.php';
+    require_once '../classes/Erro.php';
 
     try{                             
         $produto = new Produto();
@@ -25,11 +26,13 @@
               <h2>Produto</h2>
             </div>
         </div>
+
         <?php if(isset($_GET['mensagem'])): ?> 
-                    <div class ="alert alert-success" role="alert">
-                        <?= $_GET['mensagem'] ?>
-                    </div>
-                <?php endif; ?>
+            <div class ="alert alert-success" role="alert">
+                <?= $_GET['mensagem'] ?>
+            </div>
+        <?php endif; ?>
+
         <table class="table table-striped">
             <thead>
             <tr>
@@ -56,6 +59,7 @@
                     <td> <?= $linha['valordevenda'] ?></td>
                     <td> <?= $linha['quantidade'] ?></td>
                     <td>Status</td>
+                    
                     <td  class="d-flex">
                         <form action="produto-alterar.php" method="post">
                             <input type="hidden" name="id" value="<?= $linha['id'] ?>">
