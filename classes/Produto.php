@@ -51,4 +51,36 @@ class Produto{
             $this->quantidade = $linha['quantidade'];
         }
     }
+
+    public function listar()
+    {
+        $sql = "select * from produto order by nome";
+        $conexao = Conexao::getConexao(); // Os dois pontos são utilizadas caso a função seja STATIC
+        $resultado = $conexao->query($sql);
+        return $resultado->fetchAll();
+        
+    }
+
+    public function excluir(){
+        $sql = "delete from produto where id = {$this->id}";
+        $conexao = Conexao::getConexao();
+        $conexao->exec($sql);
+
+        header("location: produto-listar.php");
+
+    }
+
+    public function atualizar(){
+        $sql = "update produto
+                    set nome = '{$this->nome}',
+                        descricao = '{$this->descricao}',
+                        valordecusto = '{$this->valordecusto}',
+                        valordevenda = '{$this->valordevenda}',
+                        quantidade = '{$this->quantidade}'
+                where id = {$this->id}";
+        $conexao = Conexao::getConexao();
+        $conexao->exec($sql);
+        header('location: produto-listar.php'); //Redirecionamento após atualizar - após clicar no botão salvar
+
+    }
 }

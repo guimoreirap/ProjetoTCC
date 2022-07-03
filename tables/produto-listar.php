@@ -1,5 +1,15 @@
 <?php
-  require_once '../cabecalho.php';
+    require_once '../classes/Produto.php';
+
+    try{                             
+        $produto = new Produto();
+        $lista = $produto->listar();
+    } catch(Exception $e){
+        Erro::trataErro($e);
+    }
+
+    //Inicio do head do HTML
+    require_once '../cabecalho.php';
 ?>
     <link rel="stylesheet" href="../css/style-tabela-listar.css">
     <title>Produto</title>
@@ -15,12 +25,17 @@
               <h2>Produto</h2>
             </div>
         </div>
+        <?php if(isset($_GET['mensagem'])): ?> 
+                    <div class ="alert alert-success" role="alert">
+                        <?= $_GET['mensagem'] ?>
+                    </div>
+                <?php endif; ?>
         <table class="table table-striped">
             <thead>
             <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Nome</th>
-                <th scope="col">Marca</th>
+                <th scope="col">Descrição</th>
                 <th scope="col">Valor de custo</th>
                 <th scope="col">Valor de venda</th>
                 <th scope="col">Quantidade</th>
@@ -31,46 +46,34 @@
             </thead>
 
             <tbody>
+
+                <?php foreach($lista as $key => $linha){ ?> 
                 <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>Mark</td>
-                    <td>@mdo</td>
-                    <td>Mark</td>
+                    <td> <?= $linha['id'] ?></td>
+                    <td> <?= $linha['nome'] ?></td>
+                    <td> <?= $linha['descricao'] ?></td>
+                    <td> <?= $linha['valordecusto'] ?></td>
+                    <td> <?= $linha['valordevenda'] ?></td>
+                    <td> <?= $linha['quantidade'] ?></td>
+                    <td>Status</td>
                     <td  class="d-flex">
-                        <form action="" >
-                            <button type="" name="alterar" value="alterar" class="btn btn-warning btn-sm">
-                                    <i class="far fa-edit"></i>
+                        <form action="produto-alterar.php" method="post">
+                            <input type="hidden" name="id" value="<?= $linha['id'] ?>">
+
+                            <button href="" type="submit" name="alterar" value="alterar" class="btn btn-warning btn-sm">
+                                <i class="far fa-edit"></i>
                             </button>
                         </form>
-                            <button type="" name="excluir" value="excluir" class="btn btn-danger btn-sm">
-                            <i class="far fa-trash-alt"></i>
+                        <form action="produto-excluir.php" method="post" onsubmit="return confirm('Tem certeza que quer excluir o registro?')">          
+                            <input type="hidden" name="id" value="   <?= $linha['id'] ?>">
+                            
+                            <button type="submit" id="excluir" name="excluir" value="excluir" class="btn btn-danger btn-sm">
+                                <i class="far fa-trash-alt"></i>
                             </button>
                         </form>
                     </td>
                 </tr>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>Mark</td>
-                    <td  class="d-flex">
-                        <form action="" >
-                            <button type="" name="alterar" value="alterar" class="btn btn-warning btn-sm">
-                                    <i class="far fa-edit"></i>
-                            </button>
-                        </form>
-                            <button type="" name="excluir" value="excluir" class="btn btn-danger btn-sm">
-                            <i class="far fa-trash-alt"></i>
-                            </button>
-                        </form>
-                    </td>
-                </tr>
+                <?php }?>
             </tbody>
         </table>
         <a class="navbar-brand" href="produto-cadastrar.php">
