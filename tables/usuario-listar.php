@@ -78,7 +78,7 @@
                 <?php }?>
             </tbody>
         </table>
-        <a class="navbar-brand" href="../cadastro.php">
+        <a class="navbar-brand" href="usuario-cadastrar.php">
           <button type="button" class="btn btn-primary">Cadastrar</button>
         </a>
 

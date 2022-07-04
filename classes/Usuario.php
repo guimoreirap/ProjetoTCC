@@ -6,6 +6,7 @@ class Usuario{
     public $id;
     public $nome;
     public $email;
+    public $senha;
     public $telefone;
     public $nivelpermissao;
     public $status;
@@ -26,6 +27,7 @@ class Usuario{
         $ps = $conexao->prepare($sql);
         $ps->bindValue(':nome', $this->nome);
         $ps->bindValue(':email', $this->email);
+        //$ps->bindValue(':senha', $this->senha);
         $ps->bindValue(':telefone', $this->telefone);
         $ps->bindValue(':nivelpermissao', $this->nivelpermissao);
         $ps->bindValue(':status', $this->status);
