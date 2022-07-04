@@ -1,5 +1,17 @@
 <?php
-  require_once '../cabecalho.php';
+
+    require_once '../classes/Cliente.php';
+    require_once '../classes/Erro.php';
+
+    try{                             
+        $cliente = new Cliente();
+        $lista = $cliente->listar();
+    } catch(Exception $e){
+        Erro::trataErro($e);
+    }
+
+    //Inicio do head HTML
+    require_once '../cabecalho.php';
 ?>
 
     <link rel="stylesheet" href="../css/style-tabela-listar.css">
@@ -16,6 +28,13 @@
               <h2>Cliente</h2>
             </div>
         </div>
+
+        <?php if(isset($_GET['mensagem'])): ?> 
+            <div class ="alert alert-success" role="alert">
+                <?= $_GET['mensagem'] ?>
+            </div>
+        <?php endif; ?>
+
         <table class="table table-striped">
             <thead>
             <tr>
@@ -37,59 +56,41 @@
             </thead>
 
             <tbody>
+                <?php foreach($lista as $key => $linha){ ?> 
+
                 <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>Otto</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>Mark</td>
-                    <td>@mdo</td>
-                    <td>Mark</td>
-                    <td>Mark</td>
-                    <td>@mdo</td>
+                    <td><?= $linha['id']?></td>
+                    <td><?= $linha['nome']?></td>
+                    <td><?= $linha['cpf']?></td>
+                    <td><?= $linha['telefone']?></td>
+                    <td><?= $linha['email']?></td>
+                    <td><?= $linha['datanascimento']?></td>
+                    <td><?= $linha['sexo']?></td>
+                    <td><?= $linha['cidade']?></td>
+                    <td><?= $linha['endereco']?></td>
+                    <td><?= $linha['bairro']?></td>
+                    <td><?= $linha['numero']?></td>
+                    <td><?= $linha['status']?></td>
 
                     <td  class="d-flex">
-                        <form action="" >
-                            <button type="" name="alterar" value="alterar" class="btn btn-warning btn-sm">
-                                    <i class="far fa-edit"></i>
-                            </button>
-                        </form>
-                            <button type="" name="excluir" value="excluir" class="btn btn-danger btn-sm">
-                            <i class="far fa-trash-alt"></i>
-                            </button>
-                        </form>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>@mdo</td>
-                    <td>Otto</td>
-                    <td>Mark</td>
-                    <td>Mark</td>
-                    <td>@mdo</td>
-                    <td>Mark</td>
-                    <td>@mdo</td>
-                    <td>Mark</td>
-                    <td  class="d-flex">
-                        <form action="" >
-                            <button type="" name="alterar" value="alterar" class="btn btn-warning btn-sm">
-                                    <i class="far fa-edit"></i>
-                            </button>
-                        </form>
-                            <button type="" name="excluir" value="excluir" class="btn btn-danger btn-sm">
-                            <i class="far fa-trash-alt"></i>
-                            </button>
-                        </form>
-                    </td>
+                            <form action="cliente-alterar.php" method="post">
+                                <input type="hidden" name="id" value="<?= $linha['id'] ?>">
+
+                                <button href="" type="submit" name="alterar" value="alterar" class="btn btn-warning btn-sm">
+                                        <i class="far fa-edit"></i>
+                                </button>
+                            </form>
+                            <form action="cliente-excluir.php" method="post" onsubmit="return confirm('Tem certeza que quer excluir o registro?')">          
+                                <input type="hidden" name="id" value="<?= $linha['id'] ?>">
+                                
+                                <button type="submit" id="excluir" name="excluir" value="excluir" class="btn btn-danger btn-sm">
+                                    <i class="far fa-trash-alt"></i>
+                                </button>
+                            </form>
+                        </td>
                 </tr>
                 
-                
+                <?php }?>
             </tbody>
         </table>
         <a class="navbar-brand" href="cliente-cadastrar.php">

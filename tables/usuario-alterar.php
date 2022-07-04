@@ -40,7 +40,7 @@
   
 ?>
     <link rel="stylesheet" href="../css/style-tabela-listar.css">
-    <title>Cadastro de Produto</title>
+    <title>Alterar usuário</title>
 </head>
 <body>
     <?php
