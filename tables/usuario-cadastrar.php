@@ -6,7 +6,7 @@
 
         $nome = $_POST['nome'];
         $email = $_POST['email'];
-        $senha = $_POST['senha'];
+        $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
         $telefone = $_POST['telefone'];
         $nivelpermissao = $_POST['nivelpermissao'];
         $status = $_POST['status'];
@@ -63,8 +63,8 @@
                 <input name="email" type="text" class="form-control" id="email">
             </div>
             <div class="mb-3">
-                <label for="senha" class="form-label">senha</label>
-                <input name="senha" type="password" class="form-control" id="senha" placeholder="NÃO ESTÁ FUNCIONANDO" disabled>
+                <label for="senha" class="form-label">Senha</label>
+                <input name="senha" type="password" class="form-control" id="senha" placeholder="NÃO ESTÁ FUNCIONANDO">
             </div>
             <div class="mb-3">
                 <label for="telefone" class="form-label">Telefone</label>

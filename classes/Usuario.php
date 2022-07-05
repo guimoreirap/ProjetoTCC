@@ -20,14 +20,14 @@ class Usuario{
 
     public function inserir ()
     {
-        $sql = "insert into usuario(nome, email, telefone, nivelpermissao, status) values (:nome, :email, :telefone, :nivelpermissao, :status)";
+        $sql = "insert into usuario(nome, email, senha, telefone, nivelpermissao, status) values (:nome, :email, :senha, :telefone, :nivelpermissao, :status)";
 
         $conexao = Conexao::getConexao();
 
         $ps = $conexao->prepare($sql);
         $ps->bindValue(':nome', $this->nome);
         $ps->bindValue(':email', $this->email);
-        //$ps->bindValue(':senha', $this->senha);
+        $ps->bindValue(':senha', $this->senha);
         $ps->bindValue(':telefone', $this->telefone);
         $ps->bindValue(':nivelpermissao', $this->nivelpermissao);
         $ps->bindValue(':status', $this->status);
@@ -76,6 +76,7 @@ class Usuario{
         $sql = "update usuario
                     set nome = '{$this->nome}',
                         email = '{$this->email}',
+                        senha = '{$this->senha}',
                         telefone = '{$this->telefone}',
                         nivelpermissao = '{$this->nivelpermissao}',
                         status = '{$this->status}'
@@ -83,6 +84,5 @@ class Usuario{
         $conexao = Conexao::getConexao();
         $conexao->exec($sql);
         header('location: produto-listar.php'); //Redirecionamento após atualizar - após clicar no botão salvar
-
     }
 }
