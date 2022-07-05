@@ -42,9 +42,22 @@
           </li>
         </ul>
         <form class="d-flex" role="search">
-          
-          <button class="btn btn-light" type="submit"><i class="fa-solid fa-arrow-right-from-bracket"></i></button>
 
+          <div class="btn-group">
+            <button type="button" class="btn btn-light" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            </button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                  <li><button class="dropdown-item" type="button">Configurações</button></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li>
+                    <a href="sair.php">
+                      <button class="dropdown-item" type="button">Sair</button>
+                    </a>
+                  </li>
+                </ul>
+          </div>
+        
         </form>
       </div>
     </div>
