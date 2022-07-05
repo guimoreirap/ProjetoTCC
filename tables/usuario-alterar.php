@@ -17,6 +17,7 @@
         $usuario = new Usuario($id);
         $usuario->nome = $nome;
         $usuario->email = $email;
+        $usuario->senha = $senha;
         $usuario->telefone = $telefone;
         $usuario->nivelpermissao = $nivelpermissao;
         $usuario->status = $status;
@@ -72,7 +73,7 @@
             </div>
             <div class="mb-3">
                 <label for="senha" class="form-label">senha</label>
-                <input name="senha" type="password" class="form-control" id="senha" placeholder="NÃO ESTÁ FUNCIONANDO" disabled>
+                <input name="senha" type="password" class="form-control" id="senha">
             </div>
             <div class="mb-3">
                 <label for="telefone" class="form-label">Telefone</label>

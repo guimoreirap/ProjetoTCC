@@ -1,5 +1,44 @@
 <?php
-  require_once '../cabecalho.php';
+    require_once '../classes/Fornecedor.php'; 
+    require_once '../classes/Erro.php';
+
+    if(isset($_POST['salvar'])){
+
+        $nome = $_POST['nome'];
+        $empresa = $_POST['empresa'];
+        $descricao = $_POST['descricao'];
+        $email = $_POST['email'];
+        $telefoneempresa = $_POST['telefoneempresa'];
+        $telefonepessoal = $_POST['telefonepessoal'];
+        $cidade = $_POST['cidade'];
+        $status = $_POST['status'];
+    
+        //ATUALIZA O OBJETO
+        $fornecedor = new Fornecedor();
+        $fornecedor->nome = $nome;
+        $fornecedor->empresa = $empresa;
+        $fornecedor->descricao = $descricao;
+        $fornecedor->email = $email;
+        $fornecedor->telefoneempresa = $telefoneempresa;
+        $fornecedor->telefonepessoal = $telefonepessoal;
+        $fornecedor->cidade = $cidade;
+        $fornecedor->status = $status;
+    
+        try{
+            $fornecedor->inserir();
+        }
+        catch(Exception $e){
+            Erro::trataErro(($e));
+        }
+        //Salva o objeto atualizado
+        
+        //Manda a mensagem para o produto-listar após a alteração bem sucedida
+        $msg = "Registro inserido com sucesso.";
+        header("location: fornecedor-listar.php?mensagem={$msg}");
+    }
+
+    //Inicio do head do HTML
+    require_once '../cabecalho.php';
 ?>
     <link rel="stylesheet" href="../css/style-tabela-listar.css">
     <title>Cadastro de Fornecedor</title>
@@ -16,68 +55,46 @@
             </div>
         </div>
            
-         <form class="">
+         <form name="form" class="pt-3" method="post">
             <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Nome</label>
-                <input type="text" class="form-control" id="exampleInputNome" aria-describedby="emailHelp">
+                <label for="nome" class="form-label">Nome</label>
+                <input name="nome" type="text" class="form-control" id="nome">
             </div>
             <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">CPF</label>
-                <input type="text" class="form-control" id="exampleInputEstado">
+                <label for="empresa" class="form-label">Empresa</label>
+                <input name="empresa" type="text" class="form-control" id="empresa">
             </div>
             <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">RG</label>
-                <input type="text" class="form-control" id="exampleInputEstado">
+                <label for="descricao" class="form-label">Descrição</label>
+                <input name="descricao" type="text" class="form-control" id="descricao">
             </div>
             <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Data de nascimento</label>
-                <input type="text" class="form-control" id="exampleInputEstado">
-            </div>
-
-            <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Sexo</label>
-                <select name="grupousuario_id" id="grupousuario_id" class="form-select">
-                    <option value="">-- Selecione --</option>
-                    <option value=""> Masculino </option>
-                    <option value=""> Feminino </option>
-                    <option value=""> Outro </option>
-                </select>
+                <label for="email" class="form-label">Email</label>
+                <input name="email" type="email" class="form-control" id="email">
             </div>
             <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Endereço</label>
-                <input type="text" class="form-control" id="exampleInputEstado">
+                <label for="telefoneempresa" class="form-label">Telefone Empresa</label>
+                <input name="telefoneempresa" type="text" class="form-control" id="telefoneempresa">
             </div>
             <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Bairro</label>
-                <input type="text" class="form-control" id="exampleInputEstado">
+                <label for="telefonepessoal" class="form-label">Telefone Pessoal</label>
+                <input name="telefonepessoal" type="text" class="form-control" id="telefonepessoal">
             </div>
             <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Número</label>
-                <input type="text" class="form-control" id="exampleInputEstado">
+                <label for="cidade" class="form-label">Cidade</label>
+                <input name="cidade" type="text" class="form-control" id="cidade">
             </div>
             <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Telefone</label>
-                <input type="text" class="form-control" id="exampleInputEstado">
-            </div>
-            <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Email</label>
-                <input type="email" class="form-control" id="exampleInputEstado">
-            </div>
-            <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Empresa</label>
-                <input type="text" class="form-control" id="exampleInputEstado">
-            </div>
-            <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Descrição</label>
-                <input type="text" class="form-control" id="exampleInputEstado">
-            </div>
-            
-            <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Telefone da empresa</label>
-                <input type="text" class="form-control" id="exampleInputEstado">
+                <label for="status" class="form-label">Status</label>
+                <select class="form-select" name="status" id="status">
+                    <option selected>-- Escolha um --</option>
+                    <option value="1">1 - Ativo</option>
+                    <option value="0">0 - Inativo</option>
+                </select>            
             </div>
 
-            <button type="submit" class="btn btn-primary">Cadastrar</button>
+            <button name="salvar" type="submit" class="btn btn-primary">Salvar</button>
+
             <a class="navbar-brand" href="fornecedor-listar.php">
                 <button type="button" class="btn btn-secondary">Voltar</button>
             </a>
