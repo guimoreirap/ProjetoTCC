@@ -40,6 +40,17 @@
     //Inicio do head do HTML
     require_once '../cabecalho.php';
 ?>
+    <!-- Mask para telefone e CPF-->
+    <script src="../js/jquery-3.6.0.min.js" type="text/javascript"></script>
+    <script src="../js/jquery.mask.min.js" type="text/javascript"></script>
+    
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#telefoneempresa").mask("(00) 00000-0000");
+            $("#telefonepessoal").mask("(00) 00000-0000");
+        })
+    </script>
+
     <link rel="stylesheet" href="../css/style-tabela-listar.css">
     <title>Cadastro de Fornecedor</title>
 </head>

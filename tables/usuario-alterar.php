@@ -40,6 +40,16 @@
     require_once '../cabecalho.php';
   
 ?>
+    <!-- Mask para telefone e CPF-->
+    <script src="../js/jquery-3.6.0.min.js" type="text/javascript"></script>
+    <script src="../js/jquery.mask.min.js" type="text/javascript"></script>
+    
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#telefone").mask("(00) 00000-0000");
+        })
+    </script>
+
     <link rel="stylesheet" href="../css/style-tabela-listar.css">
     <title>Alterar usuário</title>
 </head>
@@ -69,7 +79,7 @@
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label">E-mail</label>
-                <input name="email" type="text" class="form-control" id="email" value="<?= $usuario->email?>">
+                <input name="email" type="email" class="form-control" id="email" value="<?= $usuario->email?>">
             </div>
             <div class="mb-3">
                 <label for="senha" class="form-label">senha</label>
@@ -89,7 +99,7 @@
             </div>
             <div class="mb-3">
                 <label for="status" class="form-label">Status</label>
-                <input name="status" type="text" class="form-control" id="status" value="<?= $usuario->status?>">
+                <input name="status" type="text" class="form-control" id="status" placeholder="0 - Inativo / 1 - Ativo" value="<?= $usuario->status?>">
             </div>
 
             <button name="salvar" type="submit" class="btn btn-primary">Salvar</button>

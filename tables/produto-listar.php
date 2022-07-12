@@ -55,8 +55,8 @@
                     <td> <?= $linha['id'] ?></td>
                     <td> <?= $linha['nome'] ?></td>
                     <td> <?= $linha['descricao'] ?></td>
-                    <td> <?= $linha['valordecusto'] ?></td>
-                    <td> <?= $linha['valordevenda'] ?></td>
+                    <td> R$ <?= $linha['valordecusto'] ?></td>
+                    <td> R$ <?= $linha['valordevenda'] ?></td>
                     <td> <?= $linha['quantidade'] ?></td>
                     <td>Status</td>
                     
