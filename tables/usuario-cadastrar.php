@@ -2,34 +2,49 @@
     require_once '../classes/Usuario.php'; 
     require_once '../classes/Erro.php';
     
+        
+    
     if(isset($_POST['salvar'])){
 
         $nome = $_POST['nome'];
         $email = $_POST['email'];
-        $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
+        $senha = $_POST['senha'];
+        $senhaConfirma = $_POST['senhaConfirma'];
+        //$senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
         $telefone = $_POST['telefone'];
         $nivelpermissao = $_POST['nivelpermissao'];
         $status = $_POST['status'];
-    
-        //ATUALIZA O OBJETO
-        $usuario = new Usuario();
-        $usuario->nome = $nome;
-        $usuario->email = $email;
-        $usuario->senha = $senha;
-        $usuario->telefone = $telefone;
-        $usuario->nivelpermissao = $nivelpermissao;
-        $usuario->status = $status;
-    
-        try{
-            $usuario->inserir();
+        
+        //VERIFICA SE A SENHA ESTÁ CORRETA
+        if ($senha == "") {
+            $msg = "<span class='aviso'><b>Aviso</b>: Senha não foi alterada!</span>";
+        } else if ($senha == $senhaConfirma) {
+            //PASSA PARA A SENHA O HASH
+            $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
+
+            //ATUALIZA O OBJETO
+            $usuario = new Usuario();
+            $usuario->nome = $nome;
+            $usuario->email = $email;
+            $usuario->senha = $senha;
+            $usuario->telefone = $telefone;
+            $usuario->nivelpermissao = $nivelpermissao;
+            $usuario->status = $status;
+
+            try{
+                $usuario->inserir();
+            }
+            catch(Exception $e){
+                Erro::trataErro(($e));
+            }
+
+            $msg = "<span class='erro'><b>Aviso</b>: Registro inserido com sucesso. </span>";
+        } else {
+            $msg = "<span class='erro'><b>Erro</b>: As senhas não conferem!</span>";
         }
-        catch(Exception $e){
-            Erro::trataErro(($e));
-        }
-        //Salva o objeto atualizado
+        
         
         //Manda a mensagem para o produto-listar após a alteração bem sucedida
-        $msg = "Registro inserido com sucesso.";
         header("location: usuario-listar.php?mensagem={$msg}");
     }   
     
@@ -75,6 +90,10 @@
             <div class="mb-3">
                 <label for="senha" class="form-label">Senha</label>
                 <input name="senha" type="password" class="form-control" id="senha">
+            </div>
+            <div class="mb-3">
+                <label for="senhaConfirma" class="form-label">Confirmar senha</label>
+                <input name="senhaConfirma" type="password" class="form-control" id="senhaConfirma">
             </div>
             <div class="mb-3">
                 <label for="telefone" class="form-label">Telefone</label>
