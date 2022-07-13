@@ -100,7 +100,7 @@
             <div class="mb-3">
                 <label for="status" class="form-label">Status</label>
                 <select class="form-select" name="status" id="status">
-                    <option selected><?= $usuario->nivelpermissao?></option>
+                    <option selected><?= $usuario->status?></option>
                     <option value="Ativo">Ativo</option>
                     <option value="Inativo">Inativo</option>
                 </select>            

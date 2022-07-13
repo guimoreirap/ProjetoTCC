@@ -17,7 +17,7 @@ if (isset($_POST['email']) && isset($_POST['senha'])){
 
     $usuario = mysqli_fetch_array($resultado);
 
-    if ($totalDeRegistros == 1 && password_verify($senha, $usuario['senha'])){
+    if ($totalDeRegistros == 1 && password_verify($senha, $usuario['senha']) && $usuario['status'] == 'Ativo'){
         //Proceder com o login 
 
         //Inicia a sessão se não tiver nenhuma sessão ativa
