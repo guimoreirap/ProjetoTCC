@@ -9,7 +9,15 @@
         Erro::trataErro($e);
     }
 
-    
+    /*
+    if($_POST['submit']){
+        $nome = $_POST['nome'];
+        $query = $pdo->prepare('SELECT * FROM produto WHERE nome LIKE :keyword ORDER BY id');
+        $query->bindValue(':keyword', '%'. $nome.'%', PDO::PARAM_STR);
+        $query->execute();
+        $results = $query->fetchAll();
+        $rows = $query->rowCount();
+    }*/
 
     //Inicio do head do HTML
     require_once '../cabecalho.php';
@@ -51,17 +59,50 @@
             </thead>
 
             <tbody>
+                <!--FILTRO POR NOME 
+                    <div class="container mt-5">
+                        <form action="produto-listar.php" method="post" class="pt-3">
+                            <input type="text" placeholder="Pesquise por produtos..." name="nome">
+                            <input type="submit" value="Submit" name="submit">
+                        </form>
+                    </div>
+                -->
+
+                
+                
+                <form action="produto-listar.php" name="form" class="pt-3" method="post">
+                        <div class="mb-3">
+                            <label for="nome" class="form-label">Nome</label>
+                            <input name="nome" type="text" class="form-control" id="nome">
+                        </div>
+                        <button name="submit" type="submit" class="btn btn-primary">
+                            <i class="fas fa-search"></i>  Pesquisar
+                        </button>
+                    </form>
+
+                <?php 
+                    /*  NAO ESTA FUNCIONANDO - FILTRO DOS PRODUTOS
+                        if($rows != 0){
+                        foreach($results as $r){
+                            echo '<h4>'.$r['nome'].'</h4><br>';
+                        }
+                    }
+                    */
+                ?>
 
                 <?php foreach($lista as $key => $linha){ 
+
+                    //Função para status
                     $qtd = $linha['quantidade'];
                     $msg = "Status indisponivel";
-                    //Função para status
+                    
                     if($qtd >= 1){
                         $msg = "Em estoque";
                     } else {
                         $msg = "Em falta";
                     }
-                    ?> 
+                    
+                ?> 
 
                 <tr>
                     <td> <?= $linha['id'] ?></td>
