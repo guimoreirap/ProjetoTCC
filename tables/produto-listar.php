@@ -9,6 +9,8 @@
         Erro::trataErro($e);
     }
 
+    
+
     //Inicio do head do HTML
     require_once '../cabecalho.php';
 ?>
@@ -50,7 +52,17 @@
 
             <tbody>
 
-                <?php foreach($lista as $key => $linha){ ?> 
+                <?php foreach($lista as $key => $linha){ 
+                    $qtd = $linha['quantidade'];
+                    $msg = "Status indisponivel";
+                    //Função para status
+                    if($qtd >= 1){
+                        $msg = "Em estoque";
+                    } else {
+                        $msg = "Em falta";
+                    }
+                    ?> 
+
                 <tr>
                     <td> <?= $linha['id'] ?></td>
                     <td> <?= $linha['nome'] ?></td>
@@ -58,7 +70,7 @@
                     <td> R$ <?= $linha['valordecusto'] ?></td>
                     <td> R$ <?= $linha['valordevenda'] ?></td>
                     <td> <?= $linha['quantidade'] ?></td>
-                    <td>Status</td>
+                    <td><?= $msg ?></td>
                     
                     <td  class="d-flex">
                         <form action="produto-alterar.php" method="post">
