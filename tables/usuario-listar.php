@@ -65,13 +65,6 @@
                                         <i class="far fa-edit"></i>
                                 </button>
                             </form>
-                            <form action="usuario-excluir.php" method="post" onsubmit="return confirm('Tem certeza que quer excluir o registro?')">          
-                                <input type="hidden" name="id" value="<?= $linha['id'] ?>">
-                                
-                                <button type="submit" id="excluir" name="excluir" value="excluir" class="btn btn-danger btn-sm">
-                                    <i class="far fa-trash-alt"></i>
-                                </button>
-                            </form>
                         </td>
                     </tr>
 

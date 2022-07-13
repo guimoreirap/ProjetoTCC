@@ -98,10 +98,10 @@
             <div class="mb-3">
                 <label for="status" class="form-label">Status</label>
                 <select class="form-select" name="status" id="status">
-                    <option selected>-- Escolha um --</option>
-                    <option value="1">1 - Ativo</option>
-                    <option value="0">0 - Inativo</option>
-                </select>            
+                    <option value="Ativo" selected>-- Escolha um --</option>
+                    <option value="Ativo">Ativo</option>
+                    <option value="Inativo">Inativo</option>
+                </select> 
             </div>
 
             <button name="salvar" type="submit" class="btn btn-primary">Salvar</button>

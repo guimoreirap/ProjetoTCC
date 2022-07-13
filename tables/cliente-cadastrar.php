@@ -120,7 +120,11 @@
             </div>
             <div class="mb-3">
                 <label for="status" class="form-label">Status</label>
-                <input name="status" type="text" class="form-control" id="status">
+                <select class="form-select" name="status" id="status">
+                    <option value="Ativo" selected>-- Escolha um --</option>
+                    <option value="Ativo">Ativo</option>
+                    <option value="Inativo">Inativo</option>
+                </select> 
             </div>
             
             
