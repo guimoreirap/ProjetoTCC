@@ -93,13 +93,17 @@
                 <label for="nivelpermissao" class="form-label">Nível de permissão</label>
                 <select class="form-select" name="nivelpermissao" id="nivelpermissao">
                     <option selected><?= $usuario->nivelpermissao?></option>
-                    <option value="1">1 - Admin</option>
-                    <option value="2">2 - Usuário</option>
+                    <option value="Admin">Admin</option>
+                    <option value="Usuário">Usuário</option>
                 </select>
             </div>
             <div class="mb-3">
                 <label for="status" class="form-label">Status</label>
-                <input name="status" type="text" class="form-control" id="status" placeholder="0 - Inativo / 1 - Ativo" value="<?= $usuario->status?>">
+                <select class="form-select" name="status" id="status">
+                    <option selected><?= $usuario->nivelpermissao?></option>
+                    <option value="Ativo">Ativo</option>
+                    <option value="Inativo">Inativo</option>
+                </select>            
             </div>
 
             <button name="salvar" type="submit" class="btn btn-primary">Salvar</button>

@@ -17,7 +17,8 @@
         
         //VERIFICA SE A SENHA ESTÁ CORRETA
         if ($senha == "") {
-            $msg = "<span class='aviso'><b>Aviso</b>: Senha não foi alterada!</span>";
+            $msg = "<span class='aviso'><b>Aviso</b>: Informe a senha!</span>";
+            header("location: usuario-cadastrar.php?mensagem={$msg}");
         } else if ($senha == $senhaConfirma) {
             //PASSA PARA A SENHA O HASH
             $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
@@ -39,13 +40,15 @@
             }
 
             $msg = "<span class='erro'><b>Aviso</b>: Registro inserido com sucesso. </span>";
+            header("location: usuario-listar.php?mensagem={$msg}");
         } else {
             $msg = "<span class='erro'><b>Erro</b>: As senhas não conferem!</span>";
+            header("location: usuario-cadastrar.php?mensagem={$msg}");
         }
         
         
         //Manda a mensagem para o produto-listar após a alteração bem sucedida
-        header("location: usuario-listar.php?mensagem={$msg}");
+        //header("location: usuario-listar.php?mensagem={$msg}");
     }   
     
 
@@ -77,6 +80,12 @@
               <h2>Cadastro de Usuário</h2>
             </div>
         </div>
+
+        <?php if(isset($_GET['mensagem'])): ?> 
+            <div class ="alert alert-success" role="alert">
+                <?= $_GET['mensagem'] ?>
+            </div>
+        <?php endif; ?>
            
          <form name="form" class="pt-3" method="post">
             <div class="mb-3">
@@ -102,14 +111,18 @@
             <div class="mb-3">
                 <label for="nivelpermissao" class="form-label">Nível de permissão</label>
                 <select class="form-select" name="nivelpermissao" id="nivelpermissao">
-                    <option selected>-- Escolha um --</option>
-                    <option value="1">1 - Admin</option>
-                    <option value="2">2 - Usuário</option>
+                    <option value="Usuário" selected>-- Escolha um --</option>
+                    <option value="Admin">Admin</option>
+                    <option value="Usuário">Usuário</option>
                 </select>            
             </div>
             <div class="mb-3">
                 <label for="status" class="form-label">Status</label>
-                <input name="status" type="text" class="form-control" id="status" placeholder="0 - Inativo / 1 - Ativo">
+                <select class="form-select" name="status" id="status">
+                    <option value="Ativo" selected>-- Escolha um --</option>
+                    <option value="Ativo">Ativo</option>
+                    <option value="Inativo">Inativo</option>
+                </select> 
             </div>
 
             <button name="salvar" type="submit" class="btn btn-primary">Salvar</button>
