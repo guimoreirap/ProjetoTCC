@@ -94,13 +94,21 @@ class Produto{
             $this->quantidade = $linha['quantidade'];
         }
 
-        $quantPosVenda = $this->quantidade - $quant;
+        if($this->quantidade >= $quant){
+            $quantPosVenda = $this->quantidade - $quant;
 
-        $sql = "update produto
-                    set quantidade = '{$quantPosVenda}'
-                where id = {$id}";
-        $conexao = Conexao::getConexao();
-        $conexao->exec($sql);
-        header('location: produto-listar.php'); //Redirecionamento após atualizar - após clicar no botão salvar
+            $sql = "update produto
+                        set quantidade = '{$quantPosVenda}'
+                    where id = {$id}";
+            $conexao = Conexao::getConexao();
+            $conexao->exec($sql);
+
+            $msg = "Estoque atualizado com sucesso.";
+            header("location: produto-listar.php?mensagem={$msg}");
+        } else {
+            $msg = "Produtos insuficientes em estoque. <br> Quantidade do produto em estoque: {$this->quantidade}.";
+            header("location: produto-vendas-teste.php?mensagem={$msg}");
+
+        }
     }
 }

@@ -1,5 +1,15 @@
 <?php
-  require_once '../cabecalho.php';
+    require_once '../classes/Produto.php';
+    require_once '../classes/Erro.php';
+
+    try{                             
+        $produto = new Produto();
+        $lista = $produto->listar();
+    } catch(Exception $e){
+        Erro::trataErro($e);
+    }
+
+    require_once '../cabecalho.php';
 ?>
     <link rel="stylesheet" href="../css/style-tabela-listar.css">
     <title>Cadastro de Venda</title>
@@ -40,6 +50,52 @@
                             <input type="text" class="form-control" id="exampleInputEstado">
                         </div>
                         <button type="submit" class="btn btn-success">Salvar itens da venda</button>
+
+                        <!-- TABELA DOS ITENS DA VENDA -->
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Nome</th>
+                                    <th scope="col">Descrição</th>
+                                    <th scope="col">Valor de custo</th>
+                                    <th scope="col">Valor de venda</th>
+                                    <th scope="col">Quantidade</th>
+                                    <th scope="col">Ação</th>
+                                </tr>
+                            <?php foreach($lista as $key => $linha){ ?>
+                                
+                            </thead> 
+                            <tbody>
+                                <tr>
+                                    <td> <?= $linha['id'] ?></td>
+                                    <td> <?= $linha['nome'] ?></td>
+                                    <td> <?= $linha['descricao'] ?></td>
+                                    <td> R$ <?= $linha['valordecusto'] ?></td>
+                                    <td> R$ <?= $linha['valordevenda'] ?></td>
+                                    <td> <?= $linha['quantidade'] ?></td>
+                                    
+                                    <td  class="d-flex">
+                                        <form action="produto-alterar.php" method="post">
+                                            <input type="hidden" name="id" value="<?= $linha['id'] ?>">
+
+                                            <button href="" type="submit" name="alterar" value="alterar" class="btn btn-warning btn-sm">
+                                                <i class="far fa-edit"></i>
+                                            </button>
+                                        </form>
+                                        <form action="produto-excluir.php" method="post" onsubmit="return confirm('Tem certeza que quer excluir o registro?')">          
+                                            <input type="hidden" name="id" value="   <?= $linha['id'] ?>">
+                                            
+                                            <button type="submit" id="excluir" name="excluir" value="excluir" class="btn btn-danger btn-sm">
+                                                <i class="far fa-trash-alt"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <?php }?>
+                        </table>
+
                 </div>
                 
             </div>

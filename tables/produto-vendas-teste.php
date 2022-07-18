@@ -25,6 +25,12 @@
               <h2>Teste Venda Produto </h2>
             </div>
         </div>
+
+        <?php if(isset($_GET['mensagem'])): ?> 
+            <div class ="alert alert-success" role="alert">
+                <?= $_GET['mensagem'] ?>
+            </div>
+        <?php endif; ?>
         
         <br>
          <form action="produto-vendas-teste.php" method="POST">
