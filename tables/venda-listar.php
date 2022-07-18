@@ -23,8 +23,9 @@
                 <th scope="col">Hora</th>
                 <th scope="col">Cliente</th>
                 <th scope="col">Valor total</th>
-                <th scope="col">Status de recebimento</th>
+                <th scope="col">Saldo recebido</th>
                 <th scope="col">Saldo a receber</th>
+                <th scope="col">Status de recebimento</th>
                 <th scope="col">Itens de venda</th>
                 <th scope="col">Ação</th>
 

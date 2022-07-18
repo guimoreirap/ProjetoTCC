@@ -1,13 +1,35 @@
 <?php
-    require_once '../classes/Produto.php';
-    require_once '../classes/Erro.php';
+require_once '../classes/Venda.php'; 
+require_once '../classes/Erro.php';
 
-    try{                             
-        $produto = new Produto();
-        $lista = $produto->listar();
-    } catch(Exception $e){
-        Erro::trataErro($e);
+if(isset($_POST['salvar'])){
+
+    $nome = $_POST['nome'];
+    $descricao = $_POST['descricao'];
+    $valordecusto = $_POST['valordecusto'];
+    $valordevenda = $_POST['valordevenda'];
+    $quantidade = $_POST['quantidade'];
+
+    //ATUALIZA O OBJETO
+    $venda = new Venda();
+    $venda->nome = $nome;
+    $venda->descricao = $descricao;
+    $venda->valordecusto = $valordecusto;
+    $venda->valordevenda = $valordevenda;
+    $venda->quantidade = $quantidade;
+
+    try{
+        $vendas->inserir();
     }
+    catch(Exception $e){
+        Erro::trataErro(($e));
+    }
+    //Salva o objeto atualizado
+    
+    //Manda a mensagem para o produto-listar após a alteração bem sucedida
+    $msg = "Registro inserido com sucesso.";
+    header("location: venda-listar.php?mensagem={$msg}");
+}   
 
     require_once '../cabecalho.php';
 ?>
@@ -31,27 +53,41 @@
                 <div class="container">
                     <!-- DADOS DA VENDA -->
                         <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Cliente</label>
-                            <input type="text" class="form-control" id="exampleInputNome" aria-describedby="emailHelp">
+                            <label for="idcliente" class="form-label">ID Cliente</label>
+                            <input type="text" class="form-control" id="idcliente">
                         </div>
-
-                        <div class="card" id="card">
-                            <div class="card-body">
-                              <h5>Adicione os itens da venda</h5>
-                            </div>
+                        <div class="mb-3">
+                            <label for="cliente" class="form-label">Cliente</label>
+                            <input type="text" class="form-control" id="cliente">
                         </div>
                         <!-- ITENS DA VENDA -->
                         <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Produto</label>
-                            <input type="text" class="form-control" id="exampleInputNome" aria-describedby="emailHelp">
+                            <label for="idproduto" class="form-label">ID Produto</label>
+                            <input type="text" class="form-control" id="idproduto">
                         </div>
                         <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Quantidade</label>
-                            <input type="text" class="form-control" id="exampleInputEstado">
+                            <label for="quantidade" class="form-label">Quantidade</label>
+                            <input type="text" class="form-control" id="quantidade">
                         </div>
-                        <button type="submit" class="btn btn-success">Salvar itens da venda</button>
+                        <div class="mb-3">
+                            <label for="valorrecebido" class="form-label">Valor Recebido</label>
+                            <input type="text" class="form-control" id="valorrecebido">
+                        </div>
+                        <div class="mb-3">
+                            <label for="status" class="form-label">Status de recebimento</label>
+                            <select class="form-select" name="status" id="status">
+                                <option value="Pendente" selected>Pendente</option>
+                                <option value="Pago">Pago</option>
+                            </select> 
+                        </div>
 
-                        <!-- TABELA DOS ITENS DA VENDA -->
+                        <!-- TABELA DOS ITENS DA VENDA 
+                        <br><br>
+                        <div class="card" id="card">
+                            <div class="card-body">
+                              <h5>Itens da venda</h5>
+                            </div>
+                        </div>
                         <table class="table table-striped">
                             <thead>
                                 <tr>
@@ -63,7 +99,7 @@
                                     <th scope="col">Quantidade</th>
                                     <th scope="col">Ação</th>
                                 </tr>
-                            <?php foreach($lista as $key => $linha){ ?>
+                            <?php /* foreach($lista as $key => $linha){ ?>
                                 
                             </thead> 
                             <tbody>
@@ -93,8 +129,9 @@
                                     </td>
                                 </tr>
                             </tbody>
-                            <?php }?>
+                            <?php }*/?>
                         </table>
+                        -->
 
                 </div>
                 

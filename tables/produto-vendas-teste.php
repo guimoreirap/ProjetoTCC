@@ -1,13 +1,13 @@
 <?php
   require_once '../cabecalho.php';
-  require_once '../classes/Produto.php';
+  require_once '../classes/Venda.php';
 
   if(isset($_POST['id']) != null)
   {
     $id = $_POST['id'];
     $quant = $_POST['quant'];
 
-    $vendas = new Produto;
+    $vendas = new Venda;
     $vendas->atualizarVenda($id, $quant);
   }
 ?>
