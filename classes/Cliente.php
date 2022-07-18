@@ -16,6 +16,10 @@ class Cliente{
     public $numero;
     public $status;
 
+    public function getNome(){
+        return $this->nome;
+    }
+
     public function __construct($id = false){
         if($id){
             $this->id = $id;
@@ -70,6 +74,17 @@ class Cliente{
         }
     }
 
+    //carrega cliente por um id especifico passado
+    public function carregarCliente($id){
+        $sqlListar = "select * from cliente where id = {$id}";
+        $conexao = Conexao::getConexao(); // Os dois pontos são utilizadas caso a função seja STATIC
+        $resultado = $conexao->query($sqlListar);
+        $lista = $resultado->fetchAll();
+        foreach($lista as $linha){
+            $this->nome = $linha['nome']; 
+        }
+    }
+
     public function listar()
     {
         $sql = "select * from cliente order by nome";
@@ -107,4 +122,6 @@ class Cliente{
         header('location: cliente-listar.php'); //Redirecionamento após atualizar - após clicar no botão salvar
 
     }
+
+    
 }

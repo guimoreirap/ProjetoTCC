@@ -36,6 +36,7 @@ class Produto{
             return false;
         }
         return true;
+        
     }
 
     public function carregar(){
@@ -58,7 +59,6 @@ class Produto{
         $conexao = Conexao::getConexao(); // Os dois pontos são utilizadas caso a função seja STATIC
         $resultado = $conexao->query($sql);
         return $resultado->fetchAll();
-        
     }
 
     public function excluir(){

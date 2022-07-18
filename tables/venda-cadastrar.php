@@ -1,25 +1,42 @@
 <?php
 require_once '../classes/Venda.php'; 
+require_once '../classes/Cliente.php';
 require_once '../classes/Erro.php';
 
 if(isset($_POST['salvar'])){
+    $idcliente = $_POST['idcliente'];
+    $valortotal = 20;
+    $statusrecebimento = $_POST['statusrecebimento'];
+    $saldoreceber = 20;
+    $saldorecebido = $_POST['saldorecebido'];
 
-    $nome = $_POST['nome'];
-    $descricao = $_POST['descricao'];
-    $valordecusto = $_POST['valordecusto'];
-    $valordevenda = $_POST['valordevenda'];
+    //itens de venda
+    $idproduto = $_POST['idproduto'];
     $quantidade = $_POST['quantidade'];
+    
+    //Carrega o nome do CLIENTE através do id que foi passado pelo usuario
+    try{                             
+        $cliente = new Cliente();
+        $cliente->carregarCliente($idcliente);
+        $nomecliente = $cliente->getNome();
+    } catch(Exception $e){
+        Erro::trataErro($e);
+    }
 
+    
     //ATUALIZA O OBJETO
     $venda = new Venda();
-    $venda->nome = $nome;
-    $venda->descricao = $descricao;
-    $venda->valordecusto = $valordecusto;
-    $venda->valordevenda = $valordevenda;
-    $venda->quantidade = $quantidade;
-
+    $venda->idcliente = $idcliente;
+    $venda->cliente = $nomecliente;
+    $venda->valortotal = $valortotal;
+    $venda->statusrecebimento = $statusrecebimento;
+    $venda->saldoreceber = $saldoreceber;
+    $venda->saldorecebido = $saldorecebido;
+    
+    //$venda->idproduto = $idproduto;
+    //$venda->quantidade = $quantidade;
     try{
-        $vendas->inserir();
+        $venda->inserir();
     }
     catch(Exception $e){
         Erro::trataErro(($e));
@@ -48,34 +65,36 @@ if(isset($_POST['salvar'])){
             </div>
         </div>
 <br>
-         <form class="">
+         <form name="form" class="pt-3" method="post">
             <div class="mb-3">
                 <div class="container">
                     <!-- DADOS DA VENDA -->
                         <div class="mb-3">
                             <label for="idcliente" class="form-label">ID Cliente</label>
-                            <input type="text" class="form-control" id="idcliente">
+                            <input type="text" class="form-control" id="idcliente" name="idcliente">
                         </div>
+                        <!--
                         <div class="mb-3">
                             <label for="cliente" class="form-label">Cliente</label>
-                            <input type="text" class="form-control" id="cliente">
+                            <input type="text" class="form-control" id="cliente" name="cliente">
                         </div>
+                        -->
                         <!-- ITENS DA VENDA -->
                         <div class="mb-3">
                             <label for="idproduto" class="form-label">ID Produto</label>
-                            <input type="text" class="form-control" id="idproduto">
+                            <input type="text" class="form-control" id="idproduto" name="idproduto">
                         </div>
                         <div class="mb-3">
                             <label for="quantidade" class="form-label">Quantidade</label>
-                            <input type="text" class="form-control" id="quantidade">
+                            <input type="text" class="form-control" id="quantidade" name="quantidade">
                         </div>
                         <div class="mb-3">
-                            <label for="valorrecebido" class="form-label">Valor Recebido</label>
-                            <input type="text" class="form-control" id="valorrecebido">
+                            <label for="saldorecebido" class="form-label">Valor Recebido</label>
+                            <input type="text" class="form-control" id="saldorecebido" name="saldorecebido">
                         </div>
                         <div class="mb-3">
-                            <label for="status" class="form-label">Status de recebimento</label>
-                            <select class="form-select" name="status" id="status">
+                            <label for="statusrecebimento" class="form-label">Status de recebimento</label>
+                            <select class="form-select" name="statusrecebimento" id="statusrecebimento">
                                 <option value="Pendente" selected>Pendente</option>
                                 <option value="Pago">Pago</option>
                             </select> 
@@ -138,7 +157,7 @@ if(isset($_POST['salvar'])){
             </div>
 
     <br>
-            <button type="submit" class="btn btn-primary">Salvar</button>
+            <button name="salvar" type="submit" class="btn btn-primary">Salvar</button>
             <a class="navbar-brand" href="venda-listar.php">
                 <button type="button" class="btn btn-secondary">Voltar</button>
             </a>

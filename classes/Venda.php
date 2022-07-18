@@ -40,6 +40,9 @@ class Venda{
             throw new Exception("Erro ao inserir registro.");
             return false;
         }
+
+        $msg = "ERRO AO INSERIR VENDA";
+            header("location: venda-listar.php?mensagem={$msg}");
         return true;
     }
 
@@ -118,4 +121,6 @@ class Venda{
 
         }
     }
+
+    
 }
