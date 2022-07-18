@@ -83,4 +83,24 @@ class Produto{
         header('location: produto-listar.php'); //Redirecionamento após atualizar - após clicar no botão salvar
 
     }
+
+    public function atualizarVenda($id, $quant){
+
+        $sqlListar = "select * from produto where id = {$id}";
+        $conexao = Conexao::getConexao(); // Os dois pontos são utilizadas caso a função seja STATIC
+        $resultado = $conexao->query($sqlListar);
+        $lista = $resultado->fetchAll();
+        foreach($lista as $linha){
+            $this->quantidade = $linha['quantidade'];
+        }
+
+        $quantPosVenda = $this->quantidade - $quant;
+
+        $sql = "update produto
+                    set quantidade = '{$quantPosVenda}'
+                where id = {$id}";
+        $conexao = Conexao::getConexao();
+        $conexao->exec($sql);
+        header('location: produto-listar.php'); //Redirecionamento após atualizar - após clicar no botão salvar
+    }
 }

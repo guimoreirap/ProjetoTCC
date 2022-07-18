@@ -9,4 +9,6 @@ class Conexao
             DB_DRIVER . ":host=" .DB_HOST . ";
             dbname=" . DB_NOME, DB_USUARIO, DB_SENHA );
     }
+
+    
 }

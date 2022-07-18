@@ -27,6 +27,7 @@
                     <li><a class="dropdown-item" href="caixa-listar.php">Caixa</a></li>
                     <li><a class="dropdown-item" href="controle-pagamento-listar.php">Pagamento</a></li>
                     <li><a class="dropdown-item" href="controle-recebimento-listar.php">Recebimento</a></li>
+                    <li><a class="dropdown-item" href="produto-vendas-teste.php">Teste Venda</a></li>
                 </ul>
               </li>
               <li class="nav-item dropdown">
