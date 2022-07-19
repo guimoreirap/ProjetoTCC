@@ -9,16 +9,6 @@
         Erro::trataErro($e);
     }
 
-    /*
-    if($_POST['submit']){
-        $nome = $_POST['nome'];
-        $query = $pdo->prepare('SELECT * FROM produto WHERE nome LIKE :keyword ORDER BY id');
-        $query->bindValue(':keyword', '%'. $nome.'%', PDO::PARAM_STR);
-        $query->execute();
-        $results = $query->fetchAll();
-        $rows = $query->rowCount();
-    }*/
-
     //Inicio do head do HTML
     require_once '../cabecalho.php';
 ?>

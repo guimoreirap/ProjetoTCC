@@ -53,6 +53,16 @@ class Produto{
         }
     }
 
+    public function carregarProduto($id){
+        $sqlListar = "select * from produto where id = {$id}";
+        $conexao = Conexao::getConexao(); // Os dois pontos são utilizadas caso a função seja STATIC
+        $resultado = $conexao->query($sqlListar);
+        $lista = $resultado->fetchAll();
+        foreach($lista as $linha){
+            $this->nome = $linha['nome']; 
+        }
+    }
+
     public function listar()
     {
         $sql = "select * from produto order by nome";

@@ -1,5 +1,15 @@
 <?php
-  require_once '../cabecalho.php';
+
+    require_once '../classes/Venda.php';
+    require_once '../classes/Erro.php';
+
+    try{                             
+        $venda = new Venda();
+        $lista = $venda->listar();
+    } catch(Exception $e){
+        Erro::trataErro($e);
+    }
+    require_once '../cabecalho.php';
 ?>
     <link rel="stylesheet" href="../css/style-tabela-listar.css">
     <title>Venda</title>
@@ -15,8 +25,18 @@
               <h2>Venda</h2>
             </div>
         </div>
+
+        <?php if(isset($_GET['mensagem'])): ?> 
+            <div class ="alert alert-success" role="alert">
+                <?= $_GET['mensagem'] ?>
+            </div>
+        <?php endif; ?>
+
         <table class="table table-striped">
+
+            
             <thead>
+            
             <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Data</th>
@@ -33,15 +53,17 @@
             </thead>
 
             <tbody>
+                <?php foreach($lista as $key => $linha){ ?> 
+
                 <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Mark</td>
-                    <td>Mark</td>
-                    <td>@mdo</td>
-                    <td>@mdo</td>
-                    <td>@mdo</td>
-                    <td>@mdo</td>
+                    <td><?= $linha['id'] ?></td>
+                    <td><?= $linha['data'] ?></td>
+                    <td><?= $linha['hora'] ?></td>
+                    <td><?= $linha['cliente'] ?></td>
+                    <td><?= $linha['valortotal'] ?></td>
+                    <td><?= $linha['statusrecebimento'] ?></td>
+                    <td><?= $linha['saldoreceber'] ?></td>
+                    <td><?= $linha['saldorecebido'] ?></td>
                     <td  class="">
                         <form action="" > 
                             <div>
@@ -102,51 +124,20 @@
                             </div>
                         </form>
                     </td>
-                    <td  class="d-flex">
-                        <form action="" >
-                            <button type="" name="alterar" value="alterar" class="btn btn-warning btn-sm">
-                                    <i class="far fa-edit"></i>
-                            </button>
-                        </form>
-                            <button type="" name="excluir" value="excluir" class="btn btn-danger btn-sm">
-                            <i class="far fa-trash-alt"></i>
-                            </button>
-                        </form>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>@mdo</td>
-                    <td>Mark</td>
-                    <td>Mark</td>
-                    <td>@mdo</td>
-                    <td>@mdo</td>
-                    <td>@mdo</td>
-                    <td  class="">
-                        <form action="" >
-                            <div>
-                                <!-- CHAMADA DO MODAL -->
-                                <button type="button" name="alterar" value="itens-de-venda" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                                    <i class="fa-solid fa-cart-shopping"></i>
-                                </button>
-                            </div>
 
-                    </td>
                     <td  class="d-flex">
-                        <form action="" >
-                            <button type="" name="alterar" value="alterar" class="btn btn-warning btn-sm">
-                                    <i class="far fa-edit"></i>
-                            </button>
-                        </form>
-                            <button type="" name="excluir" value="excluir" class="btn btn-danger btn-sm">
-                            <i class="far fa-trash-alt"></i>
+                        <form action="venda-alterar.php" method="post">
+                            <input type="hidden" name="id" value="<?= $linha['id'] ?>">
+
+                            <button href="" type="submit" name="alterar" value="alterar" class="btn btn-warning btn-sm">
+                                <i class="far fa-edit"></i>
                             </button>
                         </form>
                     </td>
                 </tr>
 
             </tbody>
+            <?php } ?>
         </table>
         
         <a class="navbar-brand" href="venda-cadastrar.php">
