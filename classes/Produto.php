@@ -17,6 +17,14 @@ class Produto{
         }
     }
 
+    public function getNome(){
+        return $this->nome;
+    }
+
+    public function getValorDeVenda(){
+        return $this->valordevenda;
+    }
+
     public function inserir ()
     {
         $sql = "insert into produto(nome, descricao, valordecusto, valordevenda, quantidade) values (:nome, :descricao, :valordecusto, :valordevenda, :quantidade)";
@@ -60,6 +68,10 @@ class Produto{
         $lista = $resultado->fetchAll();
         foreach($lista as $linha){
             $this->nome = $linha['nome']; 
+            $this->descricao = $linha['descricao']; 
+            $this->valordecusto = $linha['valordecusto'];
+            $this->valordevenda = $linha['valordevenda'];
+            $this->quantidade = $linha['quantidade']; 
         }
     }
 

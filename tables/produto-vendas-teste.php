@@ -2,16 +2,48 @@
   require_once '../cabecalho.php';
   require_once '../classes/Venda.php';
   require_once '../classes/Produto.php';
+  require_once '../classes/ItensVenda.php';
 
   if(isset($_POST['idproduto']) != null)
   {
     $idvenda = $_POST['idvenda'];
     $idproduto = $_POST['idproduto'];
     $quant = $_POST['quant'];
+    $nomeProduto;
+    $valorunidade;
+    $valortotal;
 
     //carregando produto para pegar nome e valor unitario
-    //FAZER IGUAL O QUE FIZ NA VENDA CADASTRAR PRA PEGAR O CLIENTE
-    //CRIAR METODO DENTRO DE PRODUTO PRA CARREGAR O PRODUTO
+    try{                             
+        $produto = new Produto();
+        $produto->carregarProduto($idproduto);
+        $nomeProduto = $produto->getNome();
+        $valorunidade = $produto->getValorDeVenda();
+    } catch(Exception $e){
+        Erro::trataErro($e);
+    }
+
+    /*
+        Faz o calculo do valor total da quantia do mesmo produto
+        Utiliza typecast pra poder multiplicar as strings
+        */
+    $valortotal = (double)($valorunidade * $quant);
+
+    //Insere um novo registro em ItensVenda
+    $itensVenda = new ItensVenda();
+    $itensVenda->idvenda = $idvenda;
+    $itensVenda->idproduto = $idproduto;
+    $itensVenda->produto = $nomeProduto;
+    $itensVenda->valorunidade = $valorunidade;
+    $itensVenda->quantidade = $quant;
+    $itensVenda->valortotal = $valortotal;
+    
+    try{
+        $itensVenda->inserir();
+    }
+    catch(Exception $e){
+        Erro::trataErro(($e));
+    }
 
     //Alterar estoque - reduzindo do estoque a quantidade do produto passada
     $vendas = new Venda;
@@ -47,7 +79,7 @@
          <form action="produto-vendas-teste.php" method="POST">
             <div class="mb-3">
                 <label for="idvenda" class="form-label">ID Venda</label>
-                <input type="text" name="idvenda" id="idvenda" class="form-control" value="<?= $produto->nome?>">                
+                <input type="text" name="idvenda" id="idvenda" class="form-control">                
             </div>
             <div class="mb-3">
                 <label for="idproduto" class="form-label">ID Produto</label>
