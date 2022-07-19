@@ -7,8 +7,9 @@ require_once 'Venda.php';
 class ItensVenda{
     public $id;
     public $idvenda;
-    public $idproduto ;
+    public $idproduto;
     public $produto;
+    public $valorunidade;
     public $quantidade;
     public $valortotal;
 
@@ -21,26 +22,23 @@ class ItensVenda{
 
     public function inserir ()
     {
-        $sql = "insert into itensvenda(idcliente, cliente, valortotal, statusrecebimento, saldoreceber, saldorecebido) values (:idcliente, :cliente, :valortotal, :statusrecebimento, :saldoreceber, :saldorecebido)";
+        $sql = "insert into itensvenda(idvenda, idproduto, produto, valorunidade, quantidade, valortotal) values (:idvenda, :idproduto, :produto, :valorunidade, :quantidade, :valortotal)";
 
         $conexao = Conexao::getConexao();
 
         $ps = $conexao->prepare($sql);
-        $ps->bindValue(':idcliente', $this->idcliente);
-        $ps->bindValue(':cliente', $this->cliente);
+        $ps->bindValue(':idvenda', $this->idvenda);
+        $ps->bindValue(':idproduto', $this->idproduto);
+        $ps->bindValue(':produto', $this->produto);
+        $ps->bindValue(':valorunidade', $this->valorunidade);
+        $ps->bindValue(':quantidade', $this->quantidade);
         $ps->bindValue(':valortotal', $this->valortotal);
-        $ps->bindValue(':statusrecebimento', $this->statusrecebimento);
-        $ps->bindValue(':saldoreceber', $this->saldoreceber);
-        $ps->bindValue(':saldorecebido', $this->saldorecebido);
 
         $resultado = $ps->execute();
         if($resultado == 0){
             throw new Exception("Erro ao inserir registro.");
             return false;
         }
-
-        $msg = "ERRO AO INSERIR VENDA";
-            header("location: venda-listar.php?mensagem={$msg}");
         return true;
     }
 
@@ -51,14 +49,12 @@ class ItensVenda{
         $lista = $resultado->fetchAll();
         foreach($lista as $linha){
             $this->id = $linha['id']; 
-            $this->data = $linha['data']; 
-            $this->hora = $linha['hora'];
-            $this->idcliente = $linha['idcliente'];
-            $this->cliente = $linha['cliente'];
-            $this->valortotal = $linha['valortotal'];
-            $this->statusrecebimento = $linha['statusrecebimento'];
-            $this->saldoreceber = $linha['saldoreceber'];
-            $this->saldorecebido = $linha['saldorecebido'];
+            $this->data = $linha['idvenda']; 
+            $this->hora = $linha['idproduto'];
+            $this->idcliente = $linha['produto'];
+            $this->cliente = $linha['valorunidade'];
+            $this->valortotal = $linha['quantidade'];
+            $this->statusrecebimento = $linha['valortotal'];
         }
     }
 
@@ -76,15 +72,17 @@ class ItensVenda{
         $conexao = Conexao::getConexao();
         $conexao->exec($sql);
 
-        header("location: produto-listar.php");
+        header("location: venda-listar.php");
     }
 
     public function atualizar(){
         $sql = "update itensvenda
-                    set idcliente = '{$this->idcliente}',
-                        cliente = '{$this->cliente}',
-                        statusrecebimento = '{$this->statusrecebimento}',
-                        saldorecebido = '{$this->saldorecebido}'
+                    set idvenda = '{$this->idvenda}',
+                        idproduto = '{$this->idproduto}',
+                        produto = '{$this->produto}',
+                        valorunidade = '{$this->valorunidade}',
+                        quantidade = '{$this->quantidade}',
+                        valortotal = '{$this->valortotal}'
                 where id = {$this->id}";
         $conexao = Conexao::getConexao();
         $conexao->exec($sql);

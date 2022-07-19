@@ -1,6 +1,7 @@
 <?php
 require_once '../classes/Venda.php'; 
 require_once '../classes/Cliente.php';
+require_once '../classes/Produto.php';
 require_once '../classes/Erro.php';
 
 if(isset($_POST['salvar'])){

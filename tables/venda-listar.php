@@ -126,7 +126,7 @@
                     </td>
 
                     <td  class="d-flex">
-                        <form action="venda-alterar.php" method="post">
+                        <form action="controle-recebimento-alterar.php" method="post">
                             <input type="hidden" name="id" value="<?= $linha['id'] ?>">
 
                             <button href="" type="submit" name="alterar" value="alterar" class="btn btn-warning btn-sm">
