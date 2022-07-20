@@ -55,8 +55,8 @@
 </head>
 <body>
     <?php
-      require_once 'nav-bar-table.php';
-    ?>     
+        require_once 'menu.php';
+        ?>     
 
     <div class="container-fluid pt-3">
         <div class="card" id="card">
@@ -76,7 +76,7 @@
         ?>
         
         <br>
-         <form action="produto-vendas-teste.php" method="POST">
+         <form action="itens-vendas-teste.php" method="POST">
             <div class="mb-3">
                 <label for="idvenda" class="form-label">ID Venda</label>
                 <input type="text" name="idvenda" id="idvenda" class="form-control">                

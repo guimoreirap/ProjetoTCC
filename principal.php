@@ -7,7 +7,7 @@
 </head>
 <body>
   <?php
-    require_once 'nav-bar-principal.php';
+    require_once 'menu-principal.php';
   ?>
 
 </body>

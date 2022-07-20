@@ -58,13 +58,36 @@ class ItensVenda{
         }
     }
 
+    public function carregarPorId($id){
+        $sql = "select * from itensvenda where id = {$id}";
+        $conexao = Conexao::getConexao(); // Os dois pontos são utilizadas caso a função seja STATIC
+        $resultado = $conexao->query($sql);
+        $lista = $resultado->fetchAll();
+        foreach($lista as $linha){
+            $this->id = $linha['id']; 
+            $this->data = $linha['idvenda']; 
+            $this->idcliente = $linha['produto'];
+            $this->cliente = $linha['valorunidade'];
+            $this->valortotal = $linha['quantidade'];
+            $this->statusrecebimento = $linha['valortotal'];
+        }
+    }
+
+
     public function listar()
     {
         $sql = "select * from itensvenda order by id";
         $conexao = Conexao::getConexao(); // Os dois pontos são utilizadas caso a função seja STATIC
         $resultado = $conexao->query($sql);
-        return $resultado->fetchAll();
-        
+        return $resultado->fetchAll(); 
+    }
+
+    public function listarPorId($id)
+    {
+        $sql = "select * from itensvenda where idvenda = {$id} order by id";
+        $conexao = Conexao::getConexao(); // Os dois pontos são utilizadas caso a função seja STATIC
+        $resultado = $conexao->query($sql);
+        return $resultado->fetchAll(); 
     }
 
     public function excluir(){

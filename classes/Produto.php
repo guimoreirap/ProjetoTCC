@@ -129,7 +129,7 @@ class Produto{
             header("location: produto-listar.php?mensagem={$msg}");
         } else {
             $msg = "Produtos insuficientes em estoque. <br> Quantidade do produto em estoque: {$this->quantidade}.";
-            header("location: produto-vendas-teste.php?mensagem={$msg}");
+            header("location: itens-vendas-teste.php?mensagem={$msg}");
 
         }
     }

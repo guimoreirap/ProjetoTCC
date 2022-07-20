@@ -71,8 +71,8 @@
 </head>
 <body>
     <?php
-      require_once 'nav-bar-table.php';
-    ?>     
+        require_once 'menu.php';
+        ?>     
     
     <div class="container-fluid pt-3">
         <div class="card" id="card">
