@@ -41,8 +41,8 @@ class Venda{
             return false;
         }
 
-        $msg = "ERRO AO INSERIR VENDA";
-            header("location: venda-listar.php?mensagem={$msg}");
+        
+            header("location: venda-listar.php");
         return true;
     }
 

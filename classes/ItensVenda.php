@@ -20,6 +20,26 @@ class ItensVenda{
         }
     }
 
+    public function getIdVenda(){
+        return $this->idvenda;
+    }
+
+    public function getProduto(){
+        return $this->produto;
+    }
+
+    public function getValorUnidade(){
+        return $this->valorunidade;
+    }
+
+    public function getQuantidade(){
+        return $this->quantidade;
+    }
+
+    public function getValorTotal(){
+        return $this->valortotal;
+    }
+
     public function inserir ()
     {
         $sql = "insert into itensvenda(idvenda, idproduto, produto, valorunidade, quantidade, valortotal) values (:idvenda, :idproduto, :produto, :valorunidade, :quantidade, :valortotal)";

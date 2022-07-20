@@ -6,16 +6,23 @@ require_once '../classes/Erro.php';
 
 if(isset($_POST['salvar'])){
     $idcliente = $_POST['idcliente'];
-    $valortotal = 20;
+    $valortotal = 150.75;
     $statusrecebimento = $_POST['statusrecebimento'];
-    $saldoreceber = 20;
+    $saldoreceber = 150.50;
     $saldorecebido = $_POST['saldorecebido'];
 
     //itens de venda
-    $idproduto = $_POST['idproduto'];
-    $quantidade = $_POST['quantidade'];
     
     //Carrega o nome do CLIENTE através do id que foi passado pelo usuario
+    try{                             
+        $cliente = new Cliente();
+        $cliente->carregarCliente($idcliente);
+        $nomecliente = $cliente->getNome();
+    } catch(Exception $e){
+        Erro::trataErro($e);
+    }
+
+    //Carrega os dados de itensdevenda
     try{                             
         $cliente = new Cliente();
         $cliente->carregarCliente($idcliente);
@@ -46,7 +53,7 @@ if(isset($_POST['salvar'])){
     
     //Manda a mensagem para o produto-listar após a alteração bem sucedida
     $msg = "Registro inserido com sucesso.";
-    header("location: venda-listar.php?mensagem={$msg}");
+    header("location: itens-vendas-cadastrar.php?mensagem={$msg}");
 }   
 
     require_once '../cabecalho.php';
@@ -81,14 +88,6 @@ if(isset($_POST['salvar'])){
                         </div>
                         -->
                         <!-- ITENS DA VENDA -->
-                        <div class="mb-3">
-                            <label for="idproduto" class="form-label">ID Produto</label>
-                            <input type="text" class="form-control" id="idproduto" name="idproduto">
-                        </div>
-                        <div class="mb-3">
-                            <label for="quantidade" class="form-label">Quantidade</label>
-                            <input type="text" class="form-control" id="quantidade" name="quantidade">
-                        </div>
                         <div class="mb-3">
                             <label for="saldorecebido" class="form-label">Valor Recebido</label>
                             <input type="text" class="form-control" id="saldorecebido" name="saldorecebido">

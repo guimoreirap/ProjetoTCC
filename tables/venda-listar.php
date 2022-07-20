@@ -67,9 +67,9 @@
                     <td><?= $linha['hora'] ?></td>
                     <td><?= $linha['cliente'] ?></td>
                     <td><?= $linha['valortotal'] ?></td>
-                    <td><?= $linha['statusrecebimento'] ?></td>
-                    <td><?= $linha['saldoreceber'] ?></td>
                     <td><?= $linha['saldorecebido'] ?></td>
+                    <td><?= $linha['saldoreceber'] ?></td>
+                    <td><?= $linha['statusrecebimento'] ?></td>
                     <td  class="">
                         <form action="venda-listar.php" method="post">
                             <input type="hidden" name="id" value="<?= $linha['id'] ?>">
@@ -101,20 +101,11 @@
                                                     
                                                 </tr>
                                                 <?php 
-                                                    //testando
-                                                    /*try{                             
-                                                        $produto = new ItensVenda();
-                                                        $produto->carregarPorId($idvenda);
-                                                        $nomeProduto = $produto->getNome();
-                                                        $valorunidade = $produto->getValorDeVenda();
-                                                    } catch(Exception $e){
-                                                        Erro::trataErro($e);
-                                                    }*/
+                                                    $idvenda = $linha['id'];
 
-                                                    //testando
-                                                   
+
                                                 $idvenda = $linha['id'];
-                                                
+
                                                 try{                             
                                                     $itensvenda = new ItensVenda();
                                                     $listaItensVenda = $itensvenda->listar($idvenda);
@@ -130,7 +121,7 @@
                                                         <td>R$ <?= $linhaItensVenda['valorunidade'] ?></td>
                                                         <td>R$ <?= $linhaItensVenda['valortotal'] ?></td>
                                                     </tr>
-                                                <?php } ?>
+                                                <?php  } ?>
                                             </table>
                                         </div>
 
